@@ -1,47 +1,30 @@
 package aadd2.javafxtest.controller;
+import aadd2.javafxtest.model.Product;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateSession {
-
-    // Instancia única de la clase (Singleton)
     private static HibernateSession instance;
-
-    // SessionFactory de Hibernate
     private SessionFactory sessionFactory;
 
-    // Constructor privado para evitar instanciación externa
     private HibernateSession() {
+        // Inicialización del SessionFactory
         try {
-            // Configura Hibernate y construye el SessionFactory
-            sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+            sessionFactory = new Configuration().configure().addAnnotatedClass(Product.class).buildSessionFactory();
         } catch (Exception e) {
-            System.err.println("Error al inicializar Hibernate: " + e.getMessage());
-            throw new ExceptionInInitializerError(e);
+            e.printStackTrace();
+            throw new ExceptionInInitializerError("Error al crear el SessionFactory");
         }
     }
 
-    // method para obtener la instancia única (Singleton)
     public static HibernateSession getInstance() {
         if (instance == null) {
-            synchronized (HibernateSession.class) { // Bloque para garantizar seguridad en aplicaciones multihilo
-                if (instance == null) {
-                    instance = new HibernateSession();
-                }
-            }
+            instance = new HibernateSession();
         }
         return instance;
     }
 
-    // method para obtener el SessionFactory
     public SessionFactory getSessionFactory() {
         return sessionFactory;
-    }
-
-    // method para cerrar el SessionFactory
-    public void closeSessionFactory() {
-        if (sessionFactory != null && !sessionFactory.isClosed()) {
-            sessionFactory.close();
-        }
     }
 }

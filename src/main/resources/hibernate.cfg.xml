@@ -18,9 +18,9 @@
     <property name="hibernate.format_sql">true</property>
     <!-- Escanear automáticamente las entidades (Hibernate 6) -->
     <!-- Opción 1: Añadir la clase manualmente: -->
-    <mapping class="org.cebem.Product" />
-    <mapping class="org.cebem.Supplier" />
-    <mapping class="org.cebem.Category" />
+    <mapping class="aadd2.javafxtest.model.Product" />
+    <mapping class="aadd2.javafxtest.model.Category" />
+    <mapping class="aadd2.javafxtest.model.Supplier" />
 
     <!-- Opción 2 (más avanzado): Usar hibernate.metamodel.scan.packages -->
     <!-- <property name="hibernate.metamodel.scan.packages">org.cebem.entidades</property> -->
