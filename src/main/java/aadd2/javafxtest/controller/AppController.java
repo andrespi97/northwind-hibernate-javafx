@@ -1,12 +1,10 @@
-package aadd2.javafxtest;
+package aadd2.javafxtest.controller;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javafx.fxml.FXML;
 
 public class AppController {

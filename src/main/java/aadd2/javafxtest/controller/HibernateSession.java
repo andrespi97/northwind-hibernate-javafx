@@ -1,4 +1,4 @@
-package aadd2.javafxtest;
+package aadd2.javafxtest.controller;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -21,7 +21,7 @@ public class HibernateSession {
         }
     }
 
-    // Método para obtener la instancia única (Singleton)
+    // method para obtener la instancia única (Singleton)
     public static HibernateSession getInstance() {
         if (instance == null) {
             synchronized (HibernateSession.class) { // Bloque para garantizar seguridad en aplicaciones multihilo
@@ -33,12 +33,12 @@ public class HibernateSession {
         return instance;
     }
 
-    // Método para obtener el SessionFactory
+    // method para obtener el SessionFactory
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
-    // Método para cerrar el SessionFactory
+    // method para cerrar el SessionFactory
     public void closeSessionFactory() {
         if (sessionFactory != null && !sessionFactory.isClosed()) {
             sessionFactory.close();

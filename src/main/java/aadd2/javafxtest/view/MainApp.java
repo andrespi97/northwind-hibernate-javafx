@@ -1,16 +1,18 @@
-package aadd2.javafxtest;
+package aadd2.javafxtest.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.hibernate.SessionFactory;
 
 public class MainApp extends Application {
+    private static SessionFactory factory;
 
     @Override
     public void start(Stage stage) throws Exception {
         // Cargar el archivo FXML
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("App.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/aadd2/javafxtest/app.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");

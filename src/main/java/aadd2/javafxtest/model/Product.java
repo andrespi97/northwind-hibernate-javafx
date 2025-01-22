@@ -1,4 +1,4 @@
-package aadd2.javafxtest;
+package aadd2.javafxtest.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
