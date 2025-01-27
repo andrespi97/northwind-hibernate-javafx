@@ -12,13 +12,19 @@ public class ProductDAO {
     public ProductDAO() {
         sessionFactory = HibernateSession.getInstance().getSessionFactory();
     }
-
+    public ProductDAO(SessionFactory sf) {
+        sessionFactory = sf;
+    }
     public void save(Product product) {
-        Session session = sessionFactory.openSession();
+        try (Session session = sessionFactory.openSession()) {
         session.beginTransaction();
         session.persist(product);
         session.getTransaction().commit();
-        session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error saving products", e);
+        }
     }
 
     public List<Product> getAll() {
@@ -32,18 +38,25 @@ public class ProductDAO {
     }
 
     public void update(Product product) {
-        Session session = sessionFactory.openSession();
+        try (Session session = sessionFactory.openSession()) {
         session.beginTransaction();
         session.merge(product);
         session.getTransaction().commit();
-        session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating products", e);
+        }
     }
 
     public void delete(Product product) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.remove(product);
-        session.getTransaction().commit();
-        session.close();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.delete(product); // Cambia remove por delete
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error deleting product", e);
+        }
     }
 }

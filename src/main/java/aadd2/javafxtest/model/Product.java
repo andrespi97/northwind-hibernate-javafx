@@ -9,7 +9,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ProductID", nullable = false)
-    private Integer id;
+    private Integer productID;
 
     @Column(name = "ProductName", nullable = false, length = 40)
     private String productName;
@@ -45,12 +45,12 @@ public class Product {
     @Column(name = "Discontinued", nullable = false)
     private Boolean discontinued = false;
 
-    public Integer getId() {
-        return id;
+    public Integer getProductID() {
+        return productID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setProductID(Integer id) {
+        this.productID = id;
     }
 
     public String getProductName() {

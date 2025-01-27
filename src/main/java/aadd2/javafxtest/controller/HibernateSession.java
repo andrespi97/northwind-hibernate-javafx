@@ -11,13 +11,13 @@ public class HibernateSession {
         // Inicialización del SessionFactory
         try {
             sessionFactory = new Configuration().configure().addAnnotatedClass(Product.class).buildSessionFactory();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ExceptionInInitializerError("Error al crear el SessionFactory");
+        } catch  (Throwable ex) {
+            System.err.println("Error al crear el SessionFactory: " + ex);
+            throw new ExceptionInInitializerError(ex);
         }
     }
 
-    public static HibernateSession getInstance() {
+    public static synchronized HibernateSession getInstance() {
         if (instance == null) {
             instance = new HibernateSession();
         }
@@ -26,5 +26,10 @@ public class HibernateSession {
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+    public void close() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
     }
 }
